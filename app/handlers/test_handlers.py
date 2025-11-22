@@ -5,6 +5,7 @@ import app.keyboards as kb
 from app.questions import QUESTIONS
 from app.results import get_result_text
 from app.states import TestStates
+from app.notifications import notify_test_completed
 
 test_router = Router()
 
@@ -37,5 +38,6 @@ async def answer(cb: CallbackQuery, state: FSMContext):
         await state.update_data(level=level)
         await state.set_state(TestStates.showing_result)
         await cb.message.edit_text(text, reply_markup=kb.get_report, parse_mode='Markdown')
+        await notify_test_completed(cb.bot, cb.from_user, t, level, yes)
     
     await cb.answer()

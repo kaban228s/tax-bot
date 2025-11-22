@@ -29,6 +29,6 @@ def get_risk_level(yes_count):
 
 def get_result_text(test_type, yes_count):
     level = get_risk_level(yes_count)
-    emoji, title, desc = RISK_CONFIG[test_type][level]
+    cfg = RISK_CONFIG.get(test_type, RISK_CONFIG['split'])
+    emoji, title, desc = cfg.get(level, cfg['medium'])
     return f"{emoji} *{title}*\n\n{desc}\n\nПолучите персональный отчёт 👇", level
-
