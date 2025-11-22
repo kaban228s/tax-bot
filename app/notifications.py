@@ -21,22 +21,6 @@ async def notify_new_user(bot: Bot, user):
     await notify_admins(bot, text)
 
 
-async def notify_test_completed(bot: Bot, user, test_type: str, level: str, yes_count: int):
-    """Пользователь прошёл тест"""
-    test_names = {'split': 'Дробление', 'ausn': 'УСН/АУСН', 'cash': 'Наличка'}
-    level_names = {'low': '🟢 Низкий', 'medium': '🟠 Средний', 'high': '🔴 Высокий'}
-    
-    text = (
-        f"📊 *Тест пройден*\n\n"
-        f"Пользователь: {user.full_name} (@{user.username or 'нет'})\n"
-        f"ID: `{user.id}`\n"
-        f"Тест: {test_names.get(test_type, test_type)}\n"
-        f"Результат: {level_names.get(level, level)}\n"
-        f"Ответов «Да»: {yes_count}/10"
-    )
-    await notify_admins(bot, text)
-
-
 async def notify_payment(bot: Bot, user, product: str, amount: float):
     """Успешная оплата"""
     product_names = {'report': '📄 Отчёт', 'consult': '📞 Консультация'}
