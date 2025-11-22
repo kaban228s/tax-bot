@@ -3,7 +3,7 @@ from aiogram.filters import CommandStart
 from aiogram.types import Message, CallbackQuery
 from aiogram.fsm.context import FSMContext
 import app.keyboards as kb
-from app.notifications import notify_new_user
+
 
 main_router = Router()
 
@@ -19,7 +19,7 @@ INTROS = {
 @main_router.message(CommandStart())
 async def cmd_start(msg: Message, state: FSMContext):
     await state.clear()
-    await notify_new_user(msg.bot, msg.from_user)
+    
     await msg.answer('👋 Привет!\nЯ — бот Алёны Петрушовой.\nВыберите тест 👇', reply_markup=kb.main)
 
 @main_router.message(F.text == '🟢 Тест на риск дробления бизнеса')

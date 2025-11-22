@@ -10,16 +10,6 @@ async def notify_admins(bot: Bot, message: str):
             pass  # Админ заблокировал бота или неверный ID
 
 
-async def notify_new_user(bot: Bot, user):
-    """Новый пользователь"""
-    text = (
-        f"👤 *Новый пользователь*\n\n"
-        f"ID: `{user.id}`\n"
-        f"Имя: {user.full_name}\n"
-        f"Username: @{user.username or 'нет'}"
-    )
-    await notify_admins(bot, text)
-
 
 async def notify_payment(bot: Bot, user, product: str, amount: float):
     """Успешная оплата"""
