@@ -1,0 +1,36 @@
+# Секреты
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Виртуальное окружение
+.venv/
+venv/
+ENV/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Логи
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Тесты
+.pytest_cache/
+.coverage
+htmlcov/
