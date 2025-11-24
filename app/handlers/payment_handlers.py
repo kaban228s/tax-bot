@@ -8,7 +8,7 @@ from config import DEBUG_MODE
 
 payment_router = Router()
 
-# Инициализация ЮMoney только если не DEBUG
+# Инициализация ЮMoney если не DEBUG
 if not DEBUG_MODE:
     from app.yoo_helper import YooHelper
     from config import YOOMONEY_TOKEN, YOOMONEY_WALLET, YOOMONEY_REDIRECT_URI
@@ -20,7 +20,7 @@ PRICES = {'report': 390, 'consult': 15000}
 @payment_router.callback_query(F.data == 'buy_report')
 async def buy_report(cb: CallbackQuery, state: FSMContext):
     if DEBUG_MODE:
-        # В debug режиме сразу отправляем отчёт
+        # В debug режиме сразу отправляет отчёт
         await cb.answer('🛠 DEBUG: Оплата пропущена')
         await send_report(cb, state)
         return
@@ -115,8 +115,7 @@ async def send_report(cb: CallbackQuery, state: FSMContext):
     
     filename = f"{t}_{level}.pdf"
     filepath = os.path.join("reports", filename)
-    
-    # Проверяем существование файла ДО отправки
+
     if not os.path.exists(filepath):
         await cb.message.answer(
             f'⚠️ Файл отчёта не найден!\n\n'
